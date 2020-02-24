@@ -18,7 +18,7 @@ func NewAuthService(manager SessionManagerInterface) *AuthService {
 
 func (a AuthService) Create(ctx context.Context,in *auth.UserID) (*auth.Token, error) {
 	u := uuid.Must(uuid.NewV4())
-	err := a.SessionManger.SetTokenForUserID(u.String(), int(in.UserID))
+	err := a.SessionManger.SetTokenForUserID(u.String(), in.UserID)
 	if err != nil {
 		return nil, status.Errorf(codes.AlreadyExists, "cannot create token for user %v", err.Error())
 	}
@@ -30,7 +30,7 @@ func (a AuthService) Check(ctx context.Context,in *auth.Token) (*auth.UserID, er
 	if err != nil {
 		return nil, status.Errorf(codes.Unauthenticated, "user not authenticated")
 	}
-	return &auth.UserID{UserID: int64(userID)}, nil
+	return &auth.UserID{UserID: userID}, nil
 }
 
 func (a AuthService) Delete(ctx context.Context,in *auth.Token) (*auth.Nothing, error) {

@@ -5,8 +5,8 @@ import (
 )
 
 type SessionManagerInterface interface {
-	GetUserIDByToken(token string) (int, error)
-	SetTokenForUserID(token string, userID int) error
+	GetUserIDByToken(token string) (int64, error)
+	SetTokenForUserID(token string, userID int64) error
 	DeleteToken(token string) error
 }
 
@@ -19,15 +19,15 @@ func NewRedisManager(addr, password string, db int) *RedisManager {
 	return &RedisManager{client: client}
 }
 
-func (r RedisManager) GetUserIDByToken(token string) (int, error) {
-	userID, err := r.client.Get(token).Int()
+func (r RedisManager) GetUserIDByToken(token string) (int64, error) {
+	userID, err := r.client.Get(token).Int64()
 	if err != nil {
 		return 0, err
 	}
 	return userID, nil
 }
 
-func (r RedisManager) SetTokenForUserID(token string, userID int) error {
+func (r RedisManager) SetTokenForUserID(token string, userID int64) error {
 	err := r.client.Set(token, userID, 0).Err()
 	if err != nil {
 		return err
