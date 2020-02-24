@@ -1,8 +1,9 @@
-module stocker
+module promotioner
 
 go 1.13
 
 require (
+	github.com/golang/protobuf v1.3.3 // indirect
 	github.com/jackc/pgx/v4 v4.4.1
 	github.com/lib/pq v1.3.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
