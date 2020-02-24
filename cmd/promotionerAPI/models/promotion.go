@@ -4,16 +4,16 @@ import "time"
 
 type PromotionType struct {
 	PromotionTypeID int
-	Name string
+	Name            string
 }
 
 type Promotion struct {
 	PromotionID int
-	StartDate time.Time
-	EndDate time.Time
-	Text string
-	Banner string
+	StartDate   time.Time
+	EndDate     time.Time
+	Text        string
+	Banner      string
 	// foreign keys
 	PromotionTypeID int
-	FoodPlaceID int
+	FoodPlaceID     int
 }
