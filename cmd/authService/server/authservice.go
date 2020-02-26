@@ -1,18 +1,19 @@
-package manager
+package server
 
 import (
 	"github.com/gofrs/uuid"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"promotioner/cmd/authService/manager"
 	auth "promotioner/protobuf"
 )
 
 type AuthService struct {
-	SessionManger SessionManagerInterface
+	SessionManger manager.SessionManagerInterface
 }
 
-func NewAuthService(manager SessionManagerInterface) *AuthService {
+func NewAuthService(manager manager.SessionManagerInterface) *AuthService {
 	return &AuthService{SessionManger: manager}
 }
 

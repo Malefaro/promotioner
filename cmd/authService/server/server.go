@@ -22,7 +22,7 @@ func (s Server) Run() error {
 		return err
 	}
 	server := grpc.NewServer()
-	auth.RegisterAuthServiceServer(server, manager.NewAuthService(s.SessionManager))
+	auth.RegisterAuthServiceServer(server, NewAuthService(s.SessionManager))
 	err = server.Serve(lis)
 	if err != nil {
 		return err
