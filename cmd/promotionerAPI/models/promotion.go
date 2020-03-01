@@ -1,22 +1,44 @@
 package models
 
-import "time"
+import (
+	"promotioner/cmd/promotionerAPI/models/enums"
+	"time"
+)
 
-type PromotionType struct {
-	PromotionTypeID int64
-	Name            string
+type PromotionCreator struct {
+	PromotionCreatorID int64
+	IsCustom           bool
+	// foreign keys
+	UserID      int64
+	PromotionID int64
 }
 
 type Promotion struct {
 	PromotionID   int64
 	StartDate     *time.Time
 	EndDate       *time.Time
-	Text          string
+	LabelText     string
+	Description   string
 	Banner        string
-	Rating        float64 // 0-10 stars
-	Addresses     []int64
-	IsUserCreated bool
+	Rating        float32 // 0-10 calculated rating
+	PromotionType enums.PromotionTypeEnum
 	// foreign keys
-	PromotionTypeID int64
-	FoodPlaceID     int64
+	CreatorID   int64
+	FoodPlaceID int64
+}
+
+// ManyToMany
+type PromotionAddressRelation struct {
+	PromotionAddressRelationID int64
+	// foreign keys
+	PromotionID        int64
+	FoodPlaceAddressID int64
+}
+
+type PromotionLike struct {
+	PromotionLikeID int64
+	Rating          int16 // 0-10 stars
+	// foreign keys
+	UserID      int64
+	PromotionID int64
 }
