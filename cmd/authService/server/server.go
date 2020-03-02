@@ -9,7 +9,7 @@ import (
 
 type Server struct {
 	SessionManager manager.SessionManagerInterface
-	Port string
+	Port           string
 }
 
 func NewServer(port string, manager manager.SessionManagerInterface) *Server {

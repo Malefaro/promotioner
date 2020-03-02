@@ -5,10 +5,11 @@ import "database/sql/driver"
 type FoodPlaceType string
 
 const (
-	Cafe FoodPlaceType = "cafe"
-	Bar FoodPlaceType = "bar"
+	Cafe       FoodPlaceType = "cafe"
+	Bar        FoodPlaceType = "bar"
 	Restaurant FoodPlaceType = "restaurant"
-	Club FoodPlaceType = "club"
+	Club       FoodPlaceType = "club"
+	FastFood   FoodPlaceType = "fast_food"
 )
 
 func (e *FoodPlaceType) Scan(value interface{}) error {
