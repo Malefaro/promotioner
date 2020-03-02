@@ -1,16 +1,18 @@
 package models
 
 type FoodPlace struct {
-	FoodPlaceID int64
-	Name        string
-	PriceType   int32
+	FoodPlaceID int64 `json:"food_place_id"`
+	Name        string `json:"name"`
+	PriceType   int16 `json:"price_type"`
+	Description string `json:"description"`
+	FoodPlaceType
 	// TODO: other fields
 }
 
 type FoodPlaceAddress struct {
-	FoodPlaceAddressID int64
-	Latitude           float64
-	Longitude          float64
-
-	FoodPlaceID int64
+	FoodPlaceAddressID int64 `json:"food_place_address_id"`
+	Latitude           float64 `json:"latitude"`
+	Longitude          float64 `json:"longitude"`
+	// foreign keys
+	FoodPlaceID int64 `json:"food_place_id"`
 }
