@@ -13,6 +13,7 @@ var redisPassword = flag.String("redisPassword", "", "redis password")
 var redisDb = flag.Int("redisDb", 0, "redis db")
 
 func main() {
+	flag.Parse()
 	redisManager := manager.NewRedisManager(*redisAddr, *redisPassword, *redisDb)
 	server := authServer.NewServer(*port, redisManager)
 	log.Fatalln(server.Run())

@@ -10,7 +10,7 @@ CREATE TABLE users (
 CREATE TYPE food_place_type_enum as enum('cafe', 'bar', 'restaurant', 'club', 'fast_food');
 CREATE TYPE food_type_enum as enum('sushi', 'pizza', 'burgers', 'italian', 'asian', 'eastern', 'russian');
 
-CREATE TABLE food_place (
+CREATE TABLE food_places (
     food_place_id bigserial primary key,
     name varchar(255) not null,
     average_price bigint not null,
@@ -25,13 +25,13 @@ CREATE TABLE food_place_addresses (
     latitude double precision not null,
     longitude double precision not null,
     address varchar(500) not null,
-    food_place_id bigint references food_place(food_place_id) on delete CASCADE not null
+    food_place_id bigint references food_places(food_place_id) on delete CASCADE not null
 );
 
 CREATE TABLE food_place_likes (
     food_place_like_id bigserial primary key,
     rating smallint not null,
-    food_place_id bigint references food_place(food_place_id) on delete CASCADE not null,
+    food_place_id bigint references food_places(food_place_id) on delete CASCADE not null,
     user_id bigint references users(user_id) on delete CASCADE not null
 );
 
@@ -48,7 +48,7 @@ CREATE TABLE promotions (
     promotion_type promotion_type_enum not null,
 
     -- creator_id bigint references promotion_creators(promotion_creator_id) on delete CASCADE not null,
-    food_place_id bigint references food_place(food_place_id) on delete CASCADE not null
+    food_place_id bigint references food_places(food_place_id) on delete CASCADE not null
 );
 
 CREATE TABLE promotion_creators (
@@ -97,7 +97,7 @@ CREATE TABLE permission_group_permissions (
 CREATE TABLE food_place_permission_groups (
     food_place_permission_group_id bigserial primary key,
 
-    food_place_id bigint references food_place(food_place_id) on delete CASCADE not null,
+    food_place_id bigint references food_places(food_place_id) on delete CASCADE not null,
     permission_group_id bigint references permission_groups(permission_group_id) on delete CASCADE not null
 );
 
@@ -122,7 +122,7 @@ DROP TABLE promotions;
 DROP TYPE promotion_type_enum;
 DROP TABLE food_place_likes;
 DROP TABLE food_place_addresses;
-DROP TABLE food_place;
+DROP TABLE food_places;
 DROP TYPE food_type_enum;
 DROP TYPE food_place_type_enum;
 DROP TABLE users;

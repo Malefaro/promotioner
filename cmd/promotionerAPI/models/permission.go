@@ -30,5 +30,5 @@ type UserFoodPlacePermissionGroup struct {
 	UserFoodPlacePermissionGroupID int64 `json:"user_food_place_permission_group_id"`
 
 	FoodPlacePermissionGroupID int64 `json:"food_place_permission_group_id"`
-	UserID      int64 `json:"user_id"`
+	UserID                     int64 `json:"user_id"`
 }
